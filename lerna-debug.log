@@ -1,0 +1,81 @@
+0 silly argv {
+0 silly argv   _: [ 'version' ],
+0 silly argv   'conventional-commits': true,
+0 silly argv   conventionalCommits: true,
+0 silly argv   yes: true,
+0 silly argv   y: true,
+0 silly argv   lernaVersion: '3.22.1',
+0 silly argv   '$0': '../../../.nvm/versions/node/v14.9.0/bin/lerna'
+0 silly argv }
+1 notice cli v3.22.1
+2 verbose rootPath /home/rio/Documents/mine/mern-ts-starter
+3 info current version 0.0.0
+4 silly isAnythingCommitted
+5 verbose isAnythingCommitted 1
+6 silly currentBranch
+7 verbose currentBranch master
+8 silly remoteBranchExists
+9 silly isBehindUpstream
+10 silly isBehindUpstream master is behind origin/master by 0 commit(s) and ahead by 0
+11 silly hasTags
+12 verbose hasTags false
+13 info Assuming all packages changed
+14 verbose updated @mern-ts-starter/backend
+15 verbose updated @mern-ts-starter/frontend
+16 verbose git-describe undefined => "e50f41e"
+17 silly git-describe parsed => {"refCount":"1","sha":"e50f41e","isDirty":false}
+18 silly fixed for @mern-ts-starter/backend at /home/rio/Documents/mine/mern-ts-starter/packages/backend
+19 verbose getChangelogConfig using preset "conventional-changelog-angular"
+20 silly npa Result {
+20 silly npa   type: 'tag',
+20 silly npa   registry: true,
+20 silly npa   where: undefined,
+20 silly npa   raw: 'conventional-changelog-angular',
+20 silly npa   name: 'conventional-changelog-angular',
+20 silly npa   escapedName: 'conventional-changelog-angular',
+20 silly npa   scope: undefined,
+20 silly npa   rawSpec: '',
+20 silly npa   saveSpec: null,
+20 silly npa   fetchSpec: 'latest',
+20 silly npa   gitRange: undefined,
+20 silly npa   gitCommittish: undefined,
+20 silly npa   hosted: undefined
+20 silly npa }
+21 verbose getChangelogConfig Attempting to resolve preset "conventional-changelog-angular"
+22 info getChangelogConfig Successfully resolved preset "conventional-changelog-angular"
+23 verbose fixed increment 1.0.0 by patch
+24 silly fixed for @mern-ts-starter/frontend at /home/rio/Documents/mine/mern-ts-starter/packages/frontend
+25 verbose fixed increment 1.0.0 by patch
+26 info auto-confirmed
+27 info execute Skipping releases
+28 warn lifecycle Skipping root "preversion" because it has already been called
+29 silly lifecycle No script for "preversion" in "@mern-ts-starter/backend", continuing
+30 silly lifecycle No script for "preversion" in "@mern-ts-starter/frontend", continuing
+31 silly lifecycle No script for "version" in "@mern-ts-starter/backend", continuing
+32 silly fixed for @mern-ts-starter/backend at /home/rio/Documents/mine/mern-ts-starter/packages/backend
+33 silly lifecycle No script for "version" in "@mern-ts-starter/frontend", continuing
+34 silly fixed for @mern-ts-starter/frontend at /home/rio/Documents/mine/mern-ts-starter/packages/frontend
+35 silly fixed writing new entry: "## 1.0.1 (2020-10-02)\n\n**Note:** Version bump only for package @mern-ts-starter/backend\n\n\n\n"
+36 verbose fixed wrote /home/rio/Documents/mine/mern-ts-starter/packages/backend/CHANGELOG.md
+37 silly fixed writing new entry: "## 1.0.1 (2020-10-02)\n\n**Note:** Version bump only for package @mern-ts-starter/frontend\n\n\n\n"
+38 verbose fixed wrote /home/rio/Documents/mine/mern-ts-starter/packages/frontend/CHANGELOG.md
+39 silly root for mern-ts-starter at /home/rio/Documents/mine/mern-ts-starter
+40 silly root writing new entry: "## 1.0.1 (2020-10-02)\n\n**Note:** Version bump only for package mern-ts-starter\n\n\n\n"
+41 verbose root wrote /home/rio/Documents/mine/mern-ts-starter/CHANGELOG.md
+42 warn lifecycle Skipping root "version" because it has already been called
+43 silly gitAdd [
+43 silly gitAdd   'packages/backend/package.json',
+43 silly gitAdd   'packages/backend/package-lock.json',
+43 silly gitAdd   'packages/frontend/package.json',
+43 silly gitAdd   'packages/frontend/package-lock.json',
+43 silly gitAdd   'packages/backend/CHANGELOG.md',
+43 silly gitAdd   'packages/frontend/CHANGELOG.md',
+43 silly gitAdd   'CHANGELOG.md',
+43 silly gitAdd   'lerna.json'
+43 silly gitAdd ]
+44 error Error: Command failed: git add -- packages/backend/package.json packages/backend/package-lock.json packages/frontend/package.json packages/frontend/package-lock.json packages/backend/CHANGELOG.md packages/frontend/CHANGELOG.md CHANGELOG.md lerna.json
+44 error fatal: Pathspec 'packages/frontend/package.json' is in submodule 'packages/frontend'
+44 error
+44 error     at makeError (/home/rio/.nvm/versions/node/v14.9.0/lib/node_modules/lerna/node_modules/execa/index.js:174:9)
+44 error     at /home/rio/.nvm/versions/node/v14.9.0/lib/node_modules/lerna/node_modules/execa/index.js:278:16
+44 error     at processTicksAndRejections (internal/process/task_queues.js:93:5)

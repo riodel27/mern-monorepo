@@ -1,0 +1,13 @@
+{
+  "name": "mern-ts-starter",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "dev": "lerna run dev",
+    "watch": "lerna run watch",
+    "version": "lerna version --conventional-commits --yes"
+  }
+}
