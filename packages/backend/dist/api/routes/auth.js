@@ -17,19 +17,17 @@ const typedi_1 = require("typedi");
 const auth_1 = __importDefault(require("../../services/auth"));
 const route = express_1.Router();
 exports.default = (app) => {
-    app.use("/auth", route);
-    route.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-        const logger = typedi_1.Container.get("logger");
+    app.use('/auth', route);
+    route.post('/login', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+        const logger = typedi_1.Container.get('logger');
         logger.debug(`calling auth login endpoint`);
         try {
             const { email, password } = req.body;
             const authServiceInstance = typedi_1.Container.get(auth_1.default);
-            const { user, token } = yield authServiceInstance.SignIn(email, password);
+            const { user } = yield authServiceInstance.SignIn(email, password);
+            req.session.user_id = user._id;
             logger.info(`${req.method} ${req.originalUrl} ${200}`);
-            return res.status(200).json({
-                user,
-                token,
-            });
+            return res.status(200).json({ user });
         }
         catch (error) {
             return next(error);

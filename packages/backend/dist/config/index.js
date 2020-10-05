@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
-process.env.NODE_ENV = process.env.NODE_ENV || "development";
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 const envFound = dotenv_1.default.config();
 if (envFound.error) {
     throw new Error("⚠️  Couldn't find .env file  ⚠️");
@@ -12,12 +12,11 @@ if (envFound.error) {
 exports.default = {
     port: parseInt(process.env.PORT, 10),
     databaseURL: process.env.MONGODB_URI,
-    jwtSecret: process.env.JWT_SECRET,
     logs: {
-        level: process.env.LOG_LEVEL || "silly",
+        level: process.env.LOG_LEVEL || 'silly',
     },
     api: {
-        prefix: "/api",
+        prefix: '/api',
     },
     redis: {
         url: process.env.REDIS_URL,

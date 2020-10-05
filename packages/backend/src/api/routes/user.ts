@@ -21,7 +21,7 @@ export default (app: Router) => {
     UserController.createUser
   );
 
-  route.use(middleware.isAuth, middleware.attachCurrentUser);
+  route.use(middleware.isAuth);
 
   route.get("/:id", UserController.getUserById);
   route.put("/:id", UserController.updateUser);

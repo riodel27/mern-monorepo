@@ -1,4 +1,4 @@
-import { Application, Response, NextFunction } from "express";
+import { Application, Response, NextFunction, Request } from "express";
 import { errors } from "celebrate";
 import connectRedis from "connect-redis";
 import bodyParser from "body-parser";
@@ -55,17 +55,18 @@ export default ({
     next(err);
   });
 
-  /// error handlers
-  app.use((err: any, _: any, res: Response, next: NextFunction) => {
+  ///TODO: proper error handlers
+  app.use((err: any, _: Request, res: Response, next: NextFunction) => {
     /**
-     * Handle 401 thrown by express-jwt library
+     * Handle 401 thrown by auth
      */
     if (err.name === "UnauthorizedError") {
       return res.status(err.status).send({ message: err.message }).end();
     }
     return next(err);
   });
-  app.use((err: any, _: any, res: Response, __: any) => {
+
+  app.use((err: any, _: Request, res: Response, __: NextFunction) => {
     res.status(err.status || 500);
     res.json({
       errors: {

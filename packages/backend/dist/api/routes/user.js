@@ -17,7 +17,7 @@ exports.default = (app) => {
             password: celebrate_1.Joi.string().required(),
         }),
     }), user_1.default.createUser);
-    route.use(middlewares_1.default.isAuth, middlewares_1.default.attachCurrentUser);
+    route.use(middlewares_1.default.isAuth);
     route.get("/:id", user_1.default.getUserById);
     route.put("/:id", user_1.default.updateUser);
     route.delete("/:id", user_1.default.deleteUser);

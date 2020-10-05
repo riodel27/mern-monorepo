@@ -2,11 +2,14 @@
   "name": "mern-ts-starter",
   "private": true,
   "devDependencies": {
+    "commitizen": "^4.2.1",
     "lerna": "^3.22.1"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "commit": "cz",
     "dev": "lerna run dev",
+    "diff": "lerna diff",
     "watch": "lerna run watch",
     "version": "lerna version --conventional-commits --yes"
   }
