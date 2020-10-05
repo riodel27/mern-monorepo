@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.0.3...v1.1.0) (2020-10-05)
+
+
+### Features
+
+* setup authentication using session ([07efad6](https://github.com/riodel27/mern-starter-monorepo/commit/07efad68a13180589db8e08a783ebd34586378bb))
+
+
+
+
+
 ## [1.0.3](https://github.com/riodel27/mern-starter-monorepo/compare/v1.0.2...v1.0.3) (2020-10-05)
 
 **Note:** Version bump only for package mern-ts-starter

@@ -1,6 +1,6 @@
 {
   "name": "@mern-ts-starter/backend",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -19,15 +19,15 @@
     "@types/mongoose": "^5.7.36",
     "@types/node": "^14.6.2",
     "@types/ramda": "^0.27.14",
-    "nodemon": "^2.0.4",
-    "ts-node": "^9.0.0",
-    "typescript": "^4.0.2",
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.4",
-    "prettier": "^2.1.1"
+    "nodemon": "^2.0.4",
+    "prettier": "^2.1.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
   },
   "dependencies": {
     "@types/connect-redis": "0.0.14",
