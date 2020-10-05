@@ -5,12 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## 1.0.2 (2020-10-05)
 
-**Note:** Version bump only for package @mern-ts-starter/backend
-
-
-
-
-
-## 1.0.1 (2020-10-02)
-
-**Note:** Version bump only for package @mern-ts-starter/backend
+**Note:** Version bump only for package @mern-ts-starter/frontend
