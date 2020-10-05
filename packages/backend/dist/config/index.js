@@ -19,5 +19,9 @@ exports.default = {
     api: {
         prefix: "/api",
     },
+    redis: {
+        url: process.env.REDIS_URL,
+        secret: process.env.SESSION_SECRET,
+    },
 };
 //# sourceMappingURL=index.js.map

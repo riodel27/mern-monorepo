@@ -20,4 +20,8 @@ export default {
   api: {
     prefix: "/api",
   },
+  redis: {
+    url: process.env.REDIS_URL,
+    secret: <string>process.env.SESSION_SECRET,
+  },
 };

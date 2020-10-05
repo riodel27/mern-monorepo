@@ -1,16 +1,46 @@
 import { Application, Response, NextFunction } from "express";
+import { errors } from "celebrate";
+import connectRedis from "connect-redis";
 import bodyParser from "body-parser";
 import cors from "cors";
-
-import { errors } from "celebrate";
+import session from "express-session";
 
 import config from "../config";
 import routes from "../api";
+import { COOKIE_NAME, __prod__ } from "../constants";
 
-export default ({ app }: { app: Application }) => {
+export default ({
+  app,
+  redis_client,
+}: {
+  app: Application;
+  redis_client: any;
+}) => {
+  const RedisStore = connectRedis(session);
+
   app.enable("trust proxy");
   app.use(cors());
   app.use(bodyParser.json());
+
+  app.use(
+    session({
+      name: COOKIE_NAME,
+      store: new RedisStore({
+        client: redis_client,
+        disableTouch: true,
+      }),
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 365 * 10, // 10 years
+        httpOnly: true,
+        sameSite: "lax", // csrf
+        secure: __prod__, // cookie only works in https
+        // domain: __prod__ ? ".xxx.com" : undefined,
+      },
+      saveUninitialized: false,
+      secret: config.redis.secret,
+      resave: false,
+    })
+  );
 
   // Load API routes
   app.use(config.api.prefix, routes());
