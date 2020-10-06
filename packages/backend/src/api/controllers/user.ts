@@ -10,9 +10,9 @@ export default {
       logger.debug('calling create user endpoint with body: ', req.body)
 
       try {
-         const authServiceInstance = Container.get(AuthService)
+         const AuthServiceInstance = Container.get(AuthService)
 
-         const { user } = await authServiceInstance.SignUp(req.body)
+         const { user } = await AuthServiceInstance.SignUp(req.body)
 
          req.session!.user_id = user._id
 
@@ -32,9 +32,9 @@ export default {
       try {
          const { id } = req.params
 
-         const userServiceInstance = Container.get(UserService)
+         const UserServiceInstance = Container.get(UserService)
 
-         const user = await userServiceInstance.FindOneUser({ _id: id })
+         const user = await UserServiceInstance.findOneUser({ _id: id })
 
          logger.info(`${req.method} ${req.originalUrl} ${200}`)
          return res.status(200).json({ message: 'Ok', data: user })
@@ -42,13 +42,13 @@ export default {
          return next(error)
       }
    },
-   list: async (req: Request, res: Response, next: NextFunction) => {
+   getUsers: async (req: Request, res: Response, next: NextFunction) => {
       const logger: any = Container.get('logger')
       logger.debug(`calling get users endpoint`)
       try {
-         const UserModel: any = Container.get('userModel')
+         const UserServiceInstance = Container.get(UserService)
 
-         const users = await UserModel.find()
+         const users = await UserServiceInstance.getAll(req.query)
 
          logger.info(`${req.method} ${req.originalUrl} ${202}`)
          return res.status(202).json({ message: 'users', data: users })
@@ -61,11 +61,11 @@ export default {
       logger.debug(`calling update user endpoint`)
       try {
          const { id } = req.params
-         const { body: userInput } = req
+         const { body: user_input } = req
 
-         const userServiceInstance = Container.get(UserService)
+         const UserServiceInstance = Container.get(UserService)
 
-         const user = await userServiceInstance.UpdateUser(id, userInput)
+         const user = await UserServiceInstance.updateUser(id, user_input)
 
          logger.info(`${req.method} ${req.originalUrl} ${202}`)
          return res.status(202).json({ message: 'User Updated', data: user })
@@ -79,9 +79,9 @@ export default {
       try {
          const { id } = req.params
 
-         const userServiceInstance = Container.get(UserService)
+         const UserServiceInstance = Container.get(UserService)
 
-         await userServiceInstance.DeleteOneUser({ _id: id })
+         await UserServiceInstance.deleteOneUser({ _id: id })
 
          logger.info(`${req.method} ${req.originalUrl} ${202}`)
          return res.status(202).json({ message: 'delete successful' })

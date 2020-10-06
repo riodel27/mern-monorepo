@@ -34,12 +34,12 @@ let UserService = class UserService {
         this.user = user;
         this.logger = logger;
     }
-    FindOneUser(query) {
+    findOneUser(query) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const user = yield this.user.findOne(query);
                 if (ramda_1.not(user))
-                    throw new Error("user not found");
+                    throw new Error('user not found');
                 return user;
             }
             catch (e) {
@@ -48,26 +48,26 @@ let UserService = class UserService {
             }
         });
     }
-    UpdateUser(id, userInput) {
+    updateUser(id, user_input) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                if (userInput.email) {
-                    const existingUserEmail = yield this.user.findOne({
-                        email: userInput.email,
+                if (user_input.email) {
+                    const existing_user_email = yield this.user.findOne({
+                        email: user_input.email,
                     });
-                    if (existingUserEmail && existingUserEmail.id !== id)
-                        throw new Error("User with this email already exists");
+                    if (existing_user_email && existing_user_email.id !== id)
+                        throw new Error('User with this email already exists');
                 }
                 const salt = crypto_1.randomBytes(32);
-                const hashPassword = userInput.password &&
-                    userInput.password.trim() &&
-                    (yield argon2_1.default.hash(userInput.password, { salt }));
-                const user = yield this.user.findOneAndUpdate({ _id: id }, Object.assign(Object.assign({}, userInput), (hashPassword && {
-                    salt: salt.toString("hex"),
-                    password: hashPassword,
+                const hash_password = user_input.password &&
+                    user_input.password.trim() &&
+                    (yield argon2_1.default.hash(user_input.password, { salt }));
+                const user = yield this.user.findOneAndUpdate({ _id: id }, Object.assign(Object.assign({}, user_input), (hash_password && {
+                    salt: salt.toString('hex'),
+                    password: hash_password,
                 })), { new: true });
                 if (ramda_1.not(user))
-                    throw new Error("Unknown user");
+                    throw new Error('Unknown user');
                 return user;
             }
             catch (e) {
@@ -76,17 +76,27 @@ let UserService = class UserService {
             }
         });
     }
-    DeleteOneUser(filter) {
+    deleteOneUser(filter) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.user.deleteOne(filter);
             return response;
         });
     }
+    getAll(query) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const offset = (query.offset && parseInt(query.offset)) || 0;
+            const limit = (query.limit && parseInt(query.limit)) || 10;
+            const total = yield this.user.countDocuments();
+            const users = yield this.user.find({}).sort({ _id: -1 }).skip(offset).limit(limit);
+            const next_offset = offset < total ? offset + limit : null;
+            return { users, next_offset, meta: { count: total, limit, offset } };
+        });
+    }
 };
 UserService = __decorate([
     typedi_1.Service(),
-    __param(0, typedi_1.Inject("userModel")),
-    __param(1, typedi_1.Inject("logger")),
+    __param(0, typedi_1.Inject('userModel')),
+    __param(1, typedi_1.Inject('logger')),
     __metadata("design:paramtypes", [mongoose_1.Model, Object])
 ], UserService);
 exports.default = UserService;

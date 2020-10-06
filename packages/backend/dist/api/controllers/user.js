@@ -20,8 +20,8 @@ exports.default = {
         const logger = typedi_1.Container.get('logger');
         logger.debug('calling create user endpoint with body: ', req.body);
         try {
-            const authServiceInstance = typedi_1.Container.get(auth_1.default);
-            const { user } = yield authServiceInstance.SignUp(req.body);
+            const AuthServiceInstance = typedi_1.Container.get(auth_1.default);
+            const { user } = yield AuthServiceInstance.SignUp(req.body);
             req.session.user_id = user._id;
             logger.info(`${req.method} ${req.originalUrl} ${201}`);
             return res.status(201).json({
@@ -38,8 +38,8 @@ exports.default = {
         logger.debug('calling get user  by id endpoint');
         try {
             const { id } = req.params;
-            const userServiceInstance = typedi_1.Container.get(user_1.default);
-            const user = yield userServiceInstance.FindOneUser({ _id: id });
+            const UserServiceInstance = typedi_1.Container.get(user_1.default);
+            const user = yield UserServiceInstance.findOneUser({ _id: id });
             logger.info(`${req.method} ${req.originalUrl} ${200}`);
             return res.status(200).json({ message: 'Ok', data: user });
         }
@@ -47,12 +47,12 @@ exports.default = {
             return next(error);
         }
     }),
-    list: (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    getUsers: (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         const logger = typedi_1.Container.get('logger');
         logger.debug(`calling get users endpoint`);
         try {
-            const UserModel = typedi_1.Container.get('userModel');
-            const users = yield UserModel.find();
+            const UserServiceInstance = typedi_1.Container.get(user_1.default);
+            const users = yield UserServiceInstance.getAll(req.query);
             logger.info(`${req.method} ${req.originalUrl} ${202}`);
             return res.status(202).json({ message: 'users', data: users });
         }
@@ -65,9 +65,9 @@ exports.default = {
         logger.debug(`calling update user endpoint`);
         try {
             const { id } = req.params;
-            const { body: userInput } = req;
-            const userServiceInstance = typedi_1.Container.get(user_1.default);
-            const user = yield userServiceInstance.UpdateUser(id, userInput);
+            const { body: user_input } = req;
+            const UserServiceInstance = typedi_1.Container.get(user_1.default);
+            const user = yield UserServiceInstance.updateUser(id, user_input);
             logger.info(`${req.method} ${req.originalUrl} ${202}`);
             return res.status(202).json({ message: 'User Updated', data: user });
         }
@@ -80,8 +80,8 @@ exports.default = {
         logger.debug(`calling delete user endpoint`);
         try {
             const { id } = req.params;
-            const userServiceInstance = typedi_1.Container.get(user_1.default);
-            yield userServiceInstance.DeleteOneUser({ _id: id });
+            const UserServiceInstance = typedi_1.Container.get(user_1.default);
+            yield UserServiceInstance.deleteOneUser({ _id: id });
             logger.info(`${req.method} ${req.originalUrl} ${202}`);
             return res.status(202).json({ message: 'delete successful' });
         }
