@@ -3,18 +3,25 @@
    "version": "1.5.0",
    "private": true,
    "dependencies": {
+      "@hookform/resolvers": "^1.0.0",
       "@testing-library/jest-dom": "^4.2.4",
       "@testing-library/react": "^9.5.0",
       "@testing-library/user-event": "^7.2.1",
+      "@types/hapi__joi": "^17.1.6",
       "@types/jest": "^24.0.0",
       "@types/node": "^12.12.62",
       "@types/react": "^16.9.50",
       "@types/react-dom": "^16.9.8",
+      "@types/yup": "^0.29.8",
+      "antd": "^4.7.0",
       "eslint-plugin-jest": "^24.1.0",
+      "joi": "^17.2.1",
       "react": "^16.13.1",
       "react-dom": "^16.13.1",
+      "react-hook-form": "^6.9.2",
       "react-scripts": "3.4.3",
-      "typescript": "^3.7.5"
+      "typescript": "^3.7.5",
+      "yup": "^0.29.3"
    },
    "scripts": {
       "start": "react-scripts start",
@@ -22,7 +29,7 @@
       "test": "react-scripts test",
       "eject": "react-scripts eject",
       "lint": "eslint --fix . --ext js,jsx,ts,tsx --ignore-path ./.gitignore",
-      "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+      "format": "prettier --write './**/*.{js,jsx,ts,tsx,md,json}' --config ./.prettierrc"
    },
    "husky": {
       "hooks": {
@@ -30,7 +37,7 @@
       }
    },
    "lint-staged": {
-      "src/**/*.{js,jsx,ts,tsx,json,css}": [
+      "src/**/*.{js,jsx,ts,tsx,json}": [
          "npm run format",
          "npm run lint"
       ]

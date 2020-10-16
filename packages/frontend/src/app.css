@@ -1,0 +1,14 @@
+@import '~antd/dist/antd.css';
+
+.app {
+   min-height: 100vh;
+}
+
+.app-content {
+   --offset: calc(var(--footer-height) + var(--logo-height));
+   min-height: calc(100vh - var(--offset));
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
