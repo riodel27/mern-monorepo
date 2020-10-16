@@ -5,14 +5,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.4.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.3.0...v1.4.0) (2020-10-16)
 
-
 ### Features
 
-* create signup route ([1ca6054](https://github.com/riodel27/mern-starter-monorepo/commit/1ca605490a37548dee2316792f66d5a2fa2f0967))
-
-
-
-
+-  create signup route ([1ca6054](https://github.com/riodel27/mern-starter-monorepo/commit/1ca605490a37548dee2316792f66d5a2fa2f0967))
 
 # [1.3.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.2.0...v1.3.0) (2020-10-16)
 
