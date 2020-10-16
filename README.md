@@ -54,6 +54,20 @@ npm run start
 
 <br />
 
+### Commit and Versioning
+
+```bash
+
+# commit
+npm run commit
+
+# version
+npm run version
+
+```
+
+<br />
+
 ## Packages
 
 ### Backend

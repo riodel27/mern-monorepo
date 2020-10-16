@@ -45,10 +45,10 @@ export default {
       try {
          const UserServiceInstance = Container.get(UserService)
 
-         const { users } = await UserServiceInstance.getAll(req.query)
+         const { users, ...rest } = await UserServiceInstance.getAll(req.query)
 
          logger.info(`${req.method} ${req.originalUrl} ${202}`)
-         return res.status(202).json({ users })
+         return res.status(202).json({ users, ...rest })
       } catch (error) {
          return next(error)
       }
