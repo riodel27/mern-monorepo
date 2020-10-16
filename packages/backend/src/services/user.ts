@@ -1,7 +1,7 @@
 import argon2 from 'argon2'
 import { randomBytes } from 'crypto'
 import mongodb from 'mongodb'
-import { Document, Model } from 'mongoose'
+
 import { not } from 'ramda'
 import { Inject, Service } from 'typedi'
 
@@ -10,7 +10,7 @@ import { IUser, IUserInputDTO as IUserInput, IUserQuery } from '../interfaces/IU
 @Service()
 export default class UserService {
    constructor(
-      @Inject('userModel') private user: Model<IUser & Document, {}>,
+      @Inject('userModel') private user: Models.UserModel,
       @Inject('logger') private logger: any,
    ) {}
 

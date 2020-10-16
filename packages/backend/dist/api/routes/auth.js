@@ -14,13 +14,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const typedi_1 = require("typedi");
+const signUpValidator_1 = __importDefault(require("../../validators/signUpValidator"));
+const celebrate_1 = require("celebrate");
 const auth_1 = __importDefault(require("../../services/auth"));
 const route = express_1.Router();
 exports.default = (app) => {
     app.use('/auth', route);
-    route.post('/login', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    route.post('/signup', celebrate_1.celebrate({ body: signUpValidator_1.default }), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         const logger = typedi_1.Container.get('logger');
-        logger.debug(`calling auth login endpoint`);
+        logger.debug('Calling Sign-Up endpoint with body: %o', req.body);
+        try {
+            const AuthServiceInstance = typedi_1.Container.get(auth_1.default);
+            const { user } = yield AuthServiceInstance.SignUp(req.body);
+            req.session.user_id = user._id;
+            logger.info(`${req.method} ${req.originalUrl} ${201}`);
+            return res.status(201).json({ user });
+        }
+        catch (error) {
+            return next(error);
+        }
+    }));
+    route.post('/signin', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+        const logger = typedi_1.Container.get('logger');
+        logger.debug('Calling Sign-In endpoint with body: %o', req.body);
         try {
             const { email, password } = req.body;
             const authServiceInstance = typedi_1.Container.get(auth_1.default);

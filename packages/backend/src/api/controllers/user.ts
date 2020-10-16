@@ -17,10 +17,7 @@ export default {
          req.session!.user_id = user._id
 
          logger.info(`${req.method} ${req.originalUrl} ${201}`)
-         return res.status(201).json({
-            message: 'User Created',
-            data: { user },
-         })
+         return res.status(201).json({ user })
       } catch (error) {
          return next(error)
       }
@@ -48,10 +45,10 @@ export default {
       try {
          const UserServiceInstance = Container.get(UserService)
 
-         const users = await UserServiceInstance.getAll(req.query)
+         const { users } = await UserServiceInstance.getAll(req.query)
 
          logger.info(`${req.method} ${req.originalUrl} ${202}`)
-         return res.status(202).json({ message: 'users', data: users })
+         return res.status(202).json({ users })
       } catch (error) {
          return next(error)
       }

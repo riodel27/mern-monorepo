@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express'
 import { Container } from 'typedi'
+import signUpValidator from '../../validators/signUpValidator'
+import { celebrate as validate } from 'celebrate'
 
 import AuthService from '../../services/auth'
 
@@ -8,9 +10,31 @@ const route = Router()
 export default (app: Router) => {
    app.use('/auth', route)
 
-   route.post('/login', async (req: Request, res: Response, next: NextFunction) => {
+   route.post(
+      '/signup',
+      validate({ body: signUpValidator }),
+      async (req: Request, res: Response, next: NextFunction) => {
+         const logger: any = Container.get('logger')
+         logger.debug('Calling Sign-Up endpoint with body: %o', req.body)
+
+         try {
+            const AuthServiceInstance = Container.get(AuthService)
+
+            const { user } = await AuthServiceInstance.SignUp(req.body)
+
+            req.session!.user_id = user._id
+
+            logger.info(`${req.method} ${req.originalUrl} ${201}`)
+            return res.status(201).json({ user })
+         } catch (error) {
+            return next(error)
+         }
+      },
+   )
+
+   route.post('/signin', async (req: Request, res: Response, next: NextFunction) => {
       const logger: any = Container.get('logger')
-      logger.debug(`calling auth login endpoint`)
+      logger.debug('Calling Sign-In endpoint with body: %o', req.body)
       try {
          const { email, password } = req.body
 

@@ -24,10 +24,7 @@ exports.default = {
             const { user } = yield AuthServiceInstance.SignUp(req.body);
             req.session.user_id = user._id;
             logger.info(`${req.method} ${req.originalUrl} ${201}`);
-            return res.status(201).json({
-                message: 'User Created',
-                data: { user },
-            });
+            return res.status(201).json({ user });
         }
         catch (error) {
             return next(error);
@@ -52,9 +49,9 @@ exports.default = {
         logger.debug(`calling get users endpoint`);
         try {
             const UserServiceInstance = typedi_1.Container.get(user_1.default);
-            const users = yield UserServiceInstance.getAll(req.query);
+            const { users } = yield UserServiceInstance.getAll(req.query);
             logger.info(`${req.method} ${req.originalUrl} ${202}`);
-            return res.status(202).json({ message: 'users', data: users });
+            return res.status(202).json({ users });
         }
         catch (error) {
             return next(error);
