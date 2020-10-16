@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/riodel27/mern-starter-monorepo/compare/v1.4.0...v1.4.1) (2020-10-16)
+
+
+### Bug Fixes
+
+* eslint fix on backend package ([0e99dba](https://github.com/riodel27/mern-starter-monorepo/commit/0e99dba22b3a5fe1c9e9bb51f77efef73a079c35))
+
+
+
+
+
 # [1.4.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.3.0...v1.4.0) (2020-10-16)
 
 ### Features
