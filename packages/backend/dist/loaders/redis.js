@@ -9,11 +9,11 @@ const logger_1 = __importDefault(require("./logger"));
 exports.default = () => {
     return new Promise((resolve, _) => {
         const redis = new ioredis_1.default(config_1.default.redis.url);
-        redis.on("error", (error) => {
+        redis.on('error', (error) => {
             logger_1.default.error(error);
             process.exit(1);
         });
-        redis.on("connect", () => {
+        redis.on('connect', () => {
             resolve(redis);
         });
     });

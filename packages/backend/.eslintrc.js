@@ -1,22 +1,31 @@
 module.exports = {
-  env: {
-    mocha: true,
-  },
-  extends: ["airbnb-base", "prettier"],
-  plugins: ["prettier"],
+  root: true,
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'prettier', 'simple-import-sort'],
   rules: {
-    "prettier/prettier": "error",
-    "no-unused-vars": "warn",
-    "no-console": "off",
-    "func-names": "off",
-    "no-process-exit": "off",
-    "object-shorthand": "off",
-    "class-methods-use-this": "off",
-    "no-unused-vars": [
-      "error",
-      {
-        varsIgnorePattern: "should|expect",
-      },
-    ],
+      'prettier/prettier': ['error', {}, { usePrettierrc: true }]
   },
-};
+  extends: [
+      'eslint:recommended',
+      'plugin:prettier/recommended',
+      'plugin:@typescript-eslint/eslint-recommended',
+      'plugin:@typescript-eslint/recommended',
+      'prettier/@typescript-eslint'
+  ],
+  rules: {
+      'no-var': 'error',
+      'no-use-before-define': 'error',
+      'no-undef': 'error',
+      '@typescript-eslint/no-var-requires': 0,
+      '@typescript-eslint/ban-types': [
+          'error',
+          {
+              extendDefaults: true,
+              types: {
+                  '{}': false
+              }
+          }
+      ],
+      'simple-import-sort/sort': 'error'
+  }
+}

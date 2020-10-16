@@ -1,9 +1,8 @@
 import argon2 from 'argon2'
-import { Service, Inject } from 'typedi'
-
-import { not } from 'ramda'
-import { Model, Document } from 'mongoose'
 import { randomBytes } from 'crypto'
+import { Document, Model } from 'mongoose'
+import { not } from 'ramda'
+import { Inject, Service } from 'typedi'
 
 import { IUser, IUserInputDTO } from '../interfaces/IUser'
 

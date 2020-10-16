@@ -10,10 +10,10 @@ exports.default = ({ models }) => {
         models.forEach((m) => {
             typedi_1.Container.set(m.name, m.model);
         });
-        typedi_1.Container.set("logger", logger_1.default);
+        typedi_1.Container.set('logger', logger_1.default);
     }
     catch (e) {
-        logger_1.default.error("🔥 Error on dependency injector loader: %o", e);
+        logger_1.default.error('🔥 Error on dependency injector loader: %o', e);
         throw e;
     }
 };

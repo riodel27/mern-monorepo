@@ -14,23 +14,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dependencyInjector_1 = __importDefault(require("./dependencyInjector"));
 const express_1 = __importDefault(require("./express"));
+const logger_1 = __importDefault(require("./logger"));
 const mongoose_1 = __importDefault(require("./mongoose"));
 const redis_1 = __importDefault(require("./redis"));
-const logger_1 = __importDefault(require("./logger"));
 exports.default = ({ expressApp }) => __awaiter(void 0, void 0, void 0, function* () {
     yield mongoose_1.default();
-    logger_1.default.info("✌️ DB loaded and connected!");
+    logger_1.default.info('✌️ DB loaded and connected!');
     const userModel = {
-        name: "userModel",
-        model: require("../models/user").default,
+        name: 'userModel',
+        model: require('../models/user').default,
     };
     const redis_client = yield redis_1.default();
-    logger_1.default.info("✌️ Redis loaded and connected!");
+    logger_1.default.info('✌️ Redis loaded and connected!');
     yield dependencyInjector_1.default({
         models: [userModel],
     });
-    logger_1.default.info("✌️ Dependency Injector loaded");
+    logger_1.default.info('✌️ Dependency Injector loaded');
     yield express_1.default({ app: expressApp, redis_client });
-    logger_1.default.info("✌️ Express loaded");
+    logger_1.default.info('✌️ Express loaded');
 });
 //# sourceMappingURL=index.js.map

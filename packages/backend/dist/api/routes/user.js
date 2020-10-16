@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
 const celebrate_1 = require("celebrate");
-const middlewares_1 = __importDefault(require("../middlewares"));
+const express_1 = require("express");
 const user_1 = __importDefault(require("../controllers/user"));
+const middlewares_1 = __importDefault(require("../middlewares"));
 const route = express_1.Router();
 exports.default = (app) => {
     app.use('/user', route);

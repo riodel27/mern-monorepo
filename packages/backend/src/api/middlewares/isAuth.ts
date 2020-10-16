@@ -1,12 +1,12 @@
-import { NextFunction, Request, Response } from "express";
-import { not } from "ramda";
+import { NextFunction, Request, Response } from 'express'
+import { not } from 'ramda'
 
 const isAuth = (req: Request, _: Response, next: NextFunction) => {
-  if (not(req.session!.user_id)) {
-    throw new Error("not authenticated");
-  }
+   if (not(req.session!.user_id)) {
+      throw new Error('not authenticated')
+   }
 
-  return next();
-};
+   return next()
+}
 
-export default isAuth;
+export default isAuth

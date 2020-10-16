@@ -1,8 +1,8 @@
-import { Router } from 'express'
 import { celebrate as validate, Joi } from 'celebrate'
+import { Router } from 'express'
 
-import middleware from '../middlewares'
 import UserController from '../controllers/user'
+import middleware from '../middlewares'
 
 const route = Router()
 

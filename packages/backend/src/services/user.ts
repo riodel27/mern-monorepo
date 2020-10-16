@@ -1,9 +1,9 @@
-import { Service, Inject } from 'typedi'
 import argon2 from 'argon2'
-import { Model, Document } from 'mongoose'
 import { randomBytes } from 'crypto'
-import { not } from 'ramda'
 import mongodb from 'mongodb'
+import { Document, Model } from 'mongoose'
+import { not } from 'ramda'
+import { Inject, Service } from 'typedi'
 
 import { IUser, IUserInputDTO as IUserInput, IUserQuery } from '../interfaces/IUser'
 

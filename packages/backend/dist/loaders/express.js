@@ -3,17 +3,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const body_parser_1 = __importDefault(require("body-parser"));
 const celebrate_1 = require("celebrate");
 const connect_redis_1 = __importDefault(require("connect-redis"));
-const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
 const express_session_1 = __importDefault(require("express-session"));
-const config_1 = __importDefault(require("../config"));
 const api_1 = __importDefault(require("../api"));
+const config_1 = __importDefault(require("../config"));
 const constants_1 = require("../constants");
-exports.default = ({ app, redis_client, }) => {
+exports.default = ({ app, redis_client }) => {
     const RedisStore = connect_redis_1.default(express_session_1.default);
-    app.enable("trust proxy");
+    app.enable('trust proxy');
     app.use(cors_1.default());
     app.use(body_parser_1.default.json());
     app.use(express_session_1.default({
@@ -25,7 +25,7 @@ exports.default = ({ app, redis_client, }) => {
         cookie: {
             maxAge: 1000 * 60 * 60 * 24 * 365 * 10,
             httpOnly: true,
-            sameSite: "lax",
+            sameSite: 'lax',
             secure: constants_1.__prod__,
         },
         saveUninitialized: false,
@@ -35,12 +35,12 @@ exports.default = ({ app, redis_client, }) => {
     app.use(config_1.default.api.prefix, api_1.default());
     app.use(celebrate_1.errors());
     app.use((_, __, next) => {
-        const err = new Error("Not Found");
-        err["status"] = 404;
+        const err = new Error('Not Found');
+        err['status'] = 404;
         next(err);
     });
     app.use((err, _, res, next) => {
-        if (err.name === "UnauthorizedError") {
+        if (err.name === 'UnauthorizedError') {
             return res.status(err.status).send({ message: err.message }).end();
         }
         return next(err);

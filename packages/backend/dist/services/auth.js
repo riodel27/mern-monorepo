@@ -25,10 +25,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const argon2_1 = __importDefault(require("argon2"));
-const typedi_1 = require("typedi");
-const ramda_1 = require("ramda");
-const mongoose_1 = require("mongoose");
 const crypto_1 = require("crypto");
+const mongoose_1 = require("mongoose");
+const ramda_1 = require("ramda");
+const typedi_1 = require("typedi");
 let AuthService = class AuthService {
     constructor(user, logger) {
         this.user = user;

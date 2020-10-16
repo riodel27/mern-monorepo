@@ -10,7 +10,7 @@ exports.default = () => {
     const app = express_1.Router();
     auth_1.default(app);
     user_1.default(app);
-    app.get("/", (_, res) => res.send("✌️Welcome to node-express-typescript-boilerplate API!✌️"));
+    app.get('/', (_, res) => res.send('✌️Welcome to node-express-typescript-boilerplate API!✌️'));
     return app;
 };
 //# sourceMappingURL=index.js.map

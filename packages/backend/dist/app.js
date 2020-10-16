@@ -18,7 +18,7 @@ const config_1 = __importDefault(require("./config"));
 const logger_1 = __importDefault(require("./loaders/logger"));
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     const app = express_1.default();
-    yield require("./loaders").default({ expressApp: app });
+    yield require('./loaders').default({ expressApp: app });
     app.listen(config_1.default.port, () => {
         logger_1.default.info(`
     ################################################

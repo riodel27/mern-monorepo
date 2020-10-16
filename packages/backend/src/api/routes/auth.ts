@@ -1,4 +1,4 @@
-import { Router, Request, Response, NextFunction } from 'express'
+import { NextFunction, Request, Response, Router } from 'express'
 import { Container } from 'typedi'
 
 import AuthService from '../../services/auth'

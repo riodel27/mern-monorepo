@@ -2,7 +2,7 @@
 
 ## The Folder Structure
 
-![Alt text](./uploads/readme/folder-structure.png?raw=true "Folder Structure")
+![Alt text](./uploads/readme/folder-structure.png?raw=true 'Folder Structure')
 
 ## Development
 
@@ -38,7 +38,7 @@ It uses nodemon for livereloading
 
 # API Validation
 
-![Alt text](./uploads/readme/api-validation.png?raw=true "api-validation")
+![Alt text](./uploads/readme/api-validation.png?raw=true 'api-validation')
 
 # API Documentation
 
@@ -48,4 +48,4 @@ link to view the api documentation via postman.
 
 https://documenter.getpostman.com/view/9925707/TVK5dMZ3
 
-![Alt text](./uploads/readme/api-doc.png?raw=true "api-doc")
+![Alt text](./uploads/readme/api-doc.png?raw=true 'api-doc')
