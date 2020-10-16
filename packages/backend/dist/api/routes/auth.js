@@ -12,11 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const celebrate_1 = require("celebrate");
 const express_1 = require("express");
 const typedi_1 = require("typedi");
-const signUpValidator_1 = __importDefault(require("../../validators/signUpValidator"));
-const celebrate_1 = require("celebrate");
 const auth_1 = __importDefault(require("../../services/auth"));
+const signUpValidator_1 = __importDefault(require("../../validators/signUpValidator"));
 const route = express_1.Router();
 exports.default = (app) => {
     app.use('/auth', route);

@@ -1,7 +1,6 @@
 import argon2 from 'argon2'
 import { randomBytes } from 'crypto'
 import mongodb from 'mongodb'
-
 import { not } from 'ramda'
 import { Inject, Service } from 'typedi'
 

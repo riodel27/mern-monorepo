@@ -1,6 +1,6 @@
-import { IUser } from '../interfaces/IUser'
-
 import { Document, Model } from 'mongoose'
+
+import { IUser } from '../interfaces/IUser'
 
 declare global {
    namespace Models {

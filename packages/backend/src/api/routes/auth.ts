@@ -1,9 +1,9 @@
+import { celebrate as validate } from 'celebrate'
 import { NextFunction, Request, Response, Router } from 'express'
 import { Container } from 'typedi'
-import signUpValidator from '../../validators/signUpValidator'
-import { celebrate as validate } from 'celebrate'
 
 import AuthService from '../../services/auth'
+import signUpValidator from '../../validators/signUpValidator'
 
 const route = Router()
 
