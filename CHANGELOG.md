@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.6.0...v1.7.0) (2020-10-17)
+
+
+### Features
+
+* added styled-components ([0e677b9](https://github.com/riodel27/mern-starter-monorepo/commit/0e677b9399f693a7fbfa8a02fa6efdb38285e7ee))
+
+
+
+
+
 # [1.6.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.5.0...v1.6.0) (2020-10-16)
 
 
