@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.7.1...v1.8.0) (2020-10-17)
+
+
+### Features
+
+* Sign Up screen ([c914a88](https://github.com/riodel27/mern-starter-monorepo/commit/c914a8835a8910fe7a46d956b076d08496d14dfc))
+
+
+
+
+
 ## [1.7.1](https://github.com/riodel27/mern-starter-monorepo/compare/v1.7.0...v1.7.1) (2020-10-17)
 
 **Note:** Version bump only for package mern-ts-starter

@@ -1,6 +1,6 @@
 {
    "name": "@mern-ts-starter/frontend",
-   "version": "1.7.1",
+   "version": "1.8.0",
    "private": true,
    "dependencies": {
       "@hookform/resolvers": "^1.0.0",
