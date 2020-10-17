@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const index: React.FC = () => {
+export const Login: React.FC = () => {
    return <>Login Screen</>;
 };
