@@ -1,40 +1,59 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Card } from 'antd';
+import styled from 'styled-components';
+
+const Box = styled.div`
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+`;
 
 type Inputs = {
    email: string;
    password: string;
 };
 
+/**
+ * TODO: refactor for signin or signup authentication flow.
+ */
 export const UnAuthenticatedApp: React.FC = () => {
-   const { control, handleSubmit, errors } = useForm<Inputs>();
+   const { control, handleSubmit } = useForm<Inputs>();
 
    const onSubmit = (data: Inputs) => console.log(data);
 
    return (
-      <Form name="basic" onFinish={handleSubmit(onSubmit)}>
-         <Form.Item
-            label="Email"
-            name="email"
-            validateStatus={errors.email?.message ? 'error' : 'success'}
-            help={errors.email?.message && errors.email.message}
-            // hasFeedback={errors.email?.message ? true: false}
-         >
-            <Controller as={Input} name="email" control={control} defaultValue="" />
-         </Form.Item>
+      <Box>
+         <Card title="Log Into ..." style={{ textAlign: 'center', width: '30%' }}>
+            <Form name="basic" onFinish={handleSubmit(onSubmit)}>
+               <Form.Item name="email">
+                  <Controller
+                     as={Input}
+                     name="email"
+                     control={control}
+                     defaultValue=""
+                     placeholder="Email"
+                  />
+               </Form.Item>
 
-         <Form.Item label="Password" name="password">
-            <Controller as={Input} name="password" control={control} defaultValue="" />
-         </Form.Item>
+               <Form.Item name="password">
+                  <Controller
+                     as={Input}
+                     name="password"
+                     control={control}
+                     defaultValue=""
+                     placeholder="Password"
+                  />
+               </Form.Item>
 
-         <Form.Item>
-            <Button type="primary" htmlType="submit">
-               Submit
-            </Button>
-         </Form.Item>
-      </Form>
+               <Form.Item>
+                  <Button type="primary" htmlType="submit">
+                     Log In
+                  </Button>
+               </Form.Item>
+            </Form>
+         </Card>
+      </Box>
    );
 };
-
-//TODO: Login or SignUp Form...

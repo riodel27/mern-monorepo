@@ -5,14 +5,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.6.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.5.0...v1.6.0) (2020-10-16)
 
-
 ### Features
 
-* initial setup for non authenticated and authenticated app component. ([c30f5b6](https://github.com/riodel27/mern-starter-monorepo/commit/c30f5b673acd3b521d0db67bfdf4972753f93ca7))
-
-
-
-
+-  initial setup for non authenticated and authenticated app component. ([c30f5b6](https://github.com/riodel27/mern-starter-monorepo/commit/c30f5b673acd3b521d0db67bfdf4972753f93ca7))
 
 # [1.5.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.4.1...v1.5.0) (2020-10-16)
 
