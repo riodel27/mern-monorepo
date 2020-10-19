@@ -21,11 +21,10 @@ export interface Inputs {
 }
 
 export const SignUp: React.FC = () => {
-   const [signUp] = useSignUp();
-
    const { control, handleSubmit, errors } = useForm<Inputs>({
       resolver: yupResolver(schema)
    });
+   const [signUp] = useSignUp();
 
    const onSubmit = (data: Inputs) => signUp(data);
 
@@ -49,6 +48,7 @@ export const SignUp: React.FC = () => {
                            control={control}
                            defaultValue=""
                            placeholder="Name"
+                           size="large"
                         />
                      </Form.Item>
 
@@ -63,6 +63,7 @@ export const SignUp: React.FC = () => {
                            control={control}
                            defaultValue=""
                            placeholder="Email"
+                           size="large"
                         />
                      </Form.Item>
 
@@ -77,6 +78,8 @@ export const SignUp: React.FC = () => {
                            control={control}
                            defaultValue=""
                            placeholder="Password"
+                           size="large"
+                           type="password"
                         />
                      </Form.Item>
 
