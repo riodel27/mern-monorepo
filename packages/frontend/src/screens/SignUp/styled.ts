@@ -6,3 +6,9 @@ export const Box = styled.div`
    justify-content: center;
    width: 100%;
 `;
+
+export const SiteLayoutContent = styled.div`
+   background: #fff;
+   padding: 24px;
+   height: 100vh;
+`;
