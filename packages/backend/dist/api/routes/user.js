@@ -18,6 +18,7 @@ exports.default = (app) => {
         }),
     }), user_1.default.createUser);
     route.use(middlewares_1.default.isAuth);
+    route.get('/current', user_1.default.getCurrentUser);
     route.get('/:id', user_1.default.getUserById);
     route.put('/:id', user_1.default.updateUser);
     route.delete('/:id', user_1.default.deleteUser);

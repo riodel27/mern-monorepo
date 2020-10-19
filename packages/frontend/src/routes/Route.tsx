@@ -1,3 +1,4 @@
+import { useAuthState } from 'context/auth';
 import { not } from 'ramda';
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
@@ -22,14 +23,14 @@ const RouteWrapper: React.FC<WrapperProps> = ({
    guest,
    ...rest
 }) => {
-   //    const { user } = useAuthState();
-   const user = false; //* bypass authentication
+   const { authenticated } = useAuthState();
+   // const user = false; //* bypass authentication
 
-   if (is_private && not(user)) {
+   if (is_private && not(authenticated)) {
       return <Redirect to="/sign-in" />;
    }
 
-   if (guest && user) {
+   if (guest && authenticated) {
       return <Redirect to="/" />;
    }
 

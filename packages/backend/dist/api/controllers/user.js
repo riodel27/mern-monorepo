@@ -55,6 +55,23 @@ exports.default = {
             return next(error);
         }
     }),
+    getCurrentUser: (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+        const logger = typedi_1.Container.get('logger');
+        logger.debug('calling get current user  endpoint');
+        try {
+            const id = req.session.user_id;
+            console.log('ID: ', id);
+            const UserServiceInstance = typedi_1.Container.get(user_1.default);
+            const user = yield UserServiceInstance.findOneUser({ _id: id });
+            logger.info(`${req.method} ${req.originalUrl} ${200}`);
+            return res
+                .status(200)
+                .json({ user: { name: user === null || user === void 0 ? void 0 : user.name, email: user === null || user === void 0 ? void 0 : user.email, id: user === null || user === void 0 ? void 0 : user._id } });
+        }
+        catch (error) {
+            return next(error);
+        }
+    }),
     getUsers: (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         const logger = typedi_1.Container.get('logger');
         logger.debug(`calling get users endpoint`);

@@ -12,5 +12,6 @@
     "diff": "lerna diff",
     "watch": "lerna run watch",
     "version": "lerna version --conventional-commits --yes"
-  }
+  },
+  "dependencies": {}
 }

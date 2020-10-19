@@ -13,7 +13,18 @@ export default ({ app, redis_client }: { app: Application; redis_client: any }) 
    const RedisStore = connectRedis(session)
 
    app.enable('trust proxy')
-   app.use(cors())
+
+   const corsOptions = {
+      origin(origin: any, callback: any) {
+         if (config.whitelist?.split(',').indexOf(origin) !== -1 || !origin) {
+            callback(null, true)
+         } else {
+            callback(new Error('Not allowed by CORS'))
+         }
+      },
+      credentials: true,
+   }
+   app.use(cors(corsOptions))
    app.use(bodyParser.json())
 
    app.use(
@@ -24,7 +35,8 @@ export default ({ app, redis_client }: { app: Application; redis_client: any }) 
             disableTouch: true,
          }),
          cookie: {
-            maxAge: 1000 * 60 * 60 * 24 * 365 * 10, // 10 years
+            // maxAge: 1000 * 60 * 60 * 24 * 365 * 10, // 10 years
+            maxAge: 60 * 60 * 1000, // 1 hour
             httpOnly: true,
             sameSite: 'lax', // csrf
             secure: __prod__, // cookie only works in https

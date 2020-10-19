@@ -39,6 +39,25 @@ export default {
          return next(error)
       }
    },
+   getCurrentUser: async (req: Request, res: Response, next: NextFunction) => {
+      const logger: any = Container.get('logger')
+      logger.debug('calling get current user  endpoint')
+
+      try {
+         const id = req.session!.user_id
+         console.log('ID: ', id)
+
+         const UserServiceInstance = Container.get(UserService)
+
+         const user = await UserServiceInstance.findOneUser({ _id: id })
+         logger.info(`${req.method} ${req.originalUrl} ${200}`)
+         return res
+            .status(200)
+            .json({ user: { name: user?.name, email: user?.email, id: user?._id } })
+      } catch (error) {
+         return next(error)
+      }
+   },
    getUsers: async (req: Request, res: Response, next: NextFunction) => {
       const logger: any = Container.get('logger')
       logger.debug(`calling get users endpoint`)

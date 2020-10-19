@@ -22,5 +22,6 @@ exports.default = {
         url: process.env.REDIS_URL,
         secret: process.env.SESSION_SECRET,
     },
+    whitelist: process.env.WHITE_LIST,
 };
 //# sourceMappingURL=index.js.map

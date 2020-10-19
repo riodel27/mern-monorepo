@@ -14,7 +14,19 @@ const constants_1 = require("../constants");
 exports.default = ({ app, redis_client }) => {
     const RedisStore = connect_redis_1.default(express_session_1.default);
     app.enable('trust proxy');
-    app.use(cors_1.default());
+    const corsOptions = {
+        origin(origin, callback) {
+            var _a;
+            if (((_a = config_1.default.whitelist) === null || _a === void 0 ? void 0 : _a.split(',').indexOf(origin)) !== -1 || !origin) {
+                callback(null, true);
+            }
+            else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        },
+        credentials: true,
+    };
+    app.use(cors_1.default(corsOptions));
     app.use(body_parser_1.default.json());
     app.use(express_session_1.default({
         name: constants_1.COOKIE_NAME,
@@ -23,7 +35,7 @@ exports.default = ({ app, redis_client }) => {
             disableTouch: true,
         }),
         cookie: {
-            maxAge: 1000 * 60 * 60 * 24 * 365 * 10,
+            maxAge: 60 * 60 * 1000,
             httpOnly: true,
             sameSite: 'lax',
             secure: constants_1.__prod__,

@@ -23,6 +23,7 @@ export default (app: Router) => {
 
    route.use(middleware.isAuth)
 
+   route.get('/current', UserController.getCurrentUser)
    route.get('/:id', UserController.getUserById)
    route.put('/:id', UserController.updateUser)
    route.delete('/:id', UserController.deleteUser)

@@ -19,6 +19,7 @@
       "joi": "^17.2.1",
       "ramda": "^0.27.1",
       "react": "^16.13.1",
+      "react-cookie": "^4.0.3",
       "react-dom": "^16.13.1",
       "react-hook-form": "^6.9.2",
       "react-query": "^2.23.1",

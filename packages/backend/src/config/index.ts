@@ -23,4 +23,5 @@ export default {
       url: process.env.REDIS_URL,
       secret: <string>process.env.SESSION_SECRET,
    },
+   whitelist: <string>process.env.WHITE_LIST,
 }
