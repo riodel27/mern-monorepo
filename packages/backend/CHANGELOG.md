@@ -5,25 +5,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.5.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.4.1...v1.5.0) (2020-10-16)
 
-
 ### Features
 
-* setup eslint and prettier for frontend package ([b9c7c93](https://github.com/riodel27/mern-starter-monorepo/commit/b9c7c9349bf6ba761f75fff2fa726130e355481a))
-
-
-
-
+-  setup eslint and prettier for frontend package ([b9c7c93](https://github.com/riodel27/mern-starter-monorepo/commit/b9c7c9349bf6ba761f75fff2fa726130e355481a))
 
 ## [1.4.1](https://github.com/riodel27/mern-starter-monorepo/compare/v1.4.0...v1.4.1) (2020-10-16)
 
-
 ### Bug Fixes
 
-* eslint fix on backend package ([0e99dba](https://github.com/riodel27/mern-starter-monorepo/commit/0e99dba22b3a5fe1c9e9bb51f77efef73a079c35))
-
-
-
-
+-  eslint fix on backend package ([0e99dba](https://github.com/riodel27/mern-starter-monorepo/commit/0e99dba22b3a5fe1c9e9bb51f77efef73a079c35))
 
 # [1.4.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.3.0...v1.4.0) (2020-10-16)
 
