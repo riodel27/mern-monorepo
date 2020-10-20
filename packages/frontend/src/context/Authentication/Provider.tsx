@@ -1,40 +1,11 @@
-import { usePrevious } from 'hooks/usePrevious';
-import useGetCurrentCuser from 'hooks/user/useGetCurrentUser';
-import { not } from 'ramda';
 import React from 'react';
 import { useCookies } from 'react-cookie';
+import { not } from 'ramda';
 
-export type IUser = {
-   name: string;
-   email: string;
-   password: string;
-};
-
-export type IAuthContext = {
-   authenticated: boolean;
-   setAuthenticated: (is_authenticated: boolean) => void;
-   user: IUser;
-};
-
-export const DEFAULT_USER = {
-   name: '',
-   email: '',
-   password: ''
-};
-
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const noop = () => {};
-
-const AuthContext = React.createContext<IAuthContext>({
-   authenticated: false,
-   setAuthenticated: noop,
-   user: DEFAULT_USER
-});
-
-export type AuthProviderProps = {
-   default_authenticated?: boolean;
-   default_user?: IUser;
-};
+import { AuthProviderProps } from 'global/types';
+import { AuthContext, DEFAULT_USER } from './Context';
+import { usePrevious } from 'hooks/usePrevious';
+import useGetCurrentCuser from 'hooks/user/useGetCurrentUser';
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({
    default_authenticated = false,
@@ -76,5 +47,3 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
 
    return <AuthContext.Provider value={context_value}>{children}</AuthContext.Provider>;
 };
-
-export const useAuthState = () => React.useContext(AuthContext);

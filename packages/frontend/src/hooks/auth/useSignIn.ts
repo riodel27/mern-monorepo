@@ -3,7 +3,7 @@ import { useCookies } from 'react-cookie';
 
 import { axiosInstance } from 'util/base';
 import { Inputs } from 'screens/Login';
-import { useAuthState } from 'context/auth';
+import { useAuthState } from 'context/Authentication';
 
 export default function useSignIn() {
    const { setAuthenticated } = useAuthState();

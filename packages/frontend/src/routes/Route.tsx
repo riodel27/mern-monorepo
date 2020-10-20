@@ -1,8 +1,8 @@
-import { useAuthState } from 'context/auth';
-import { not } from 'ramda';
 import React from 'react';
+import { not } from 'ramda';
 import { Redirect, Route } from 'react-router-dom';
 
+import { useAuthState } from 'context/Authentication';
 interface WrapperProps {
    component: React.ComponentType;
    is_private?: boolean;
