@@ -5,14 +5,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.9.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.8.1...v1.9.0) (2020-10-19)
 
-
 ### Features
 
-* fe authentication context ([02bcd13](https://github.com/riodel27/mern-starter-monorepo/commit/02bcd1316cf76eaacfa70c6ad231ee43f633c2c1))
-
-
-
-
+-  fe authentication context ([02bcd13](https://github.com/riodel27/mern-starter-monorepo/commit/02bcd1316cf76eaacfa70c6ad231ee43f633c2c1))
 
 # [1.5.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.4.1...v1.5.0) (2020-10-16)
 
