@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.9.1...v1.10.0) (2020-10-20)
+
+
+### Features
+
+* added maxAge option for set cookie ([c38e7d8](https://github.com/riodel27/mern-starter-monorepo/commit/c38e7d840f212aad9cab3c19419f5424c212405e))
+
+
+
+
+
 # [1.9.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.8.1...v1.9.0) (2020-10-19)
 
 ### Features
