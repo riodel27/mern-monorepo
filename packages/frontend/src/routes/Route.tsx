@@ -12,19 +12,18 @@ interface WrapperProps {
 }
 
 /**
- * * important information is highlighted
- * @param is_private
- * @param guest
  *
+ * @param is_private
+ * @param guest :: public
  */
-const RouteWrapper: React.FC<WrapperProps> = ({
+const RouteGuard: React.FC<WrapperProps> = ({
    component: Component,
    is_private,
    guest,
    ...rest
 }) => {
    const { authenticated } = useAuthState();
-   // const user = false; //* bypass authentication
+   // const authenticated = true; // bypass authentication
 
    if (is_private && not(authenticated)) {
       return <Redirect to="/sign-in" />;
@@ -37,4 +36,4 @@ const RouteWrapper: React.FC<WrapperProps> = ({
    return <Route {...rest} component={Component} />;
 };
 
-export default RouteWrapper;
+export default RouteGuard;
