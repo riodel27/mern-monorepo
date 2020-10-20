@@ -60,7 +60,6 @@ exports.default = {
         logger.debug('calling get current user  endpoint');
         try {
             const id = req.session.user_id;
-            console.log('ID: ', id);
             const UserServiceInstance = typedi_1.Container.get(user_1.default);
             const user = yield UserServiceInstance.findOneUser({ _id: id });
             logger.info(`${req.method} ${req.originalUrl} ${200}`);

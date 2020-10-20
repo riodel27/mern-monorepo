@@ -3,6 +3,7 @@ import { randomBytes } from 'crypto'
 import mongodb from 'mongodb'
 import { not } from 'ramda'
 import { Inject, Service } from 'typedi'
+import { Logger } from 'winston'
 
 import { IUser, IUserInputDTO as IUserInput, IUserQuery } from '../interfaces/IUser'
 
@@ -10,7 +11,7 @@ import { IUser, IUserInputDTO as IUserInput, IUserQuery } from '../interfaces/IU
 export default class UserService {
    constructor(
       @Inject('userModel') private user: Models.UserModel,
-      @Inject('logger') private logger: any,
+      @Inject('logger') private logger: Logger,
    ) {}
 
    public async findOneUser(query: { _id: string }): Promise<IUser | null> {

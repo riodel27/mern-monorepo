@@ -7,6 +7,11 @@ import { AuthContext, DEFAULT_USER } from './Context';
 import { usePrevious } from 'hooks/usePrevious';
 import useGetCurrentCuser from 'hooks/user/useGetCurrentUser';
 
+/**
+ *
+ * ? react router navigation will call this auth provider
+ * ? what happens if qid is expired
+ */
 export const AuthProvider: React.FC<AuthProviderProps> = ({
    default_authenticated = false,
    default_user = DEFAULT_USER,

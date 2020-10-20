@@ -2,6 +2,7 @@ import argon2 from 'argon2'
 import { randomBytes } from 'crypto'
 import { not } from 'ramda'
 import { Inject, Service } from 'typedi'
+import { Logger } from 'winston'
 
 import { IUser, IUserInputDTO } from '../interfaces/IUser'
 
@@ -9,7 +10,7 @@ import { IUser, IUserInputDTO } from '../interfaces/IUser'
 export default class AuthService {
    constructor(
       @Inject('userModel') private user: Models.UserModel,
-      @Inject('logger') private logger: any,
+      @Inject('logger') private logger: Logger,
    ) {}
 
    public async SignUp(userInputDTO: IUserInputDTO): Promise<{ user: IUser }> {

@@ -17,7 +17,7 @@ export default function useSignIn() {
          onSuccess: () => {
             console.log('success sign in mutation');
             setAuthenticated(true);
-            setCookie('is_authenticated', true);
+            setCookie('is_authenticated', true, { maxAge: 60 * 60 }); //maxAge is the same from session-cookie
          }
       }
    );

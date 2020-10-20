@@ -1,12 +1,13 @@
 import { NextFunction, Request, Response } from 'express'
 import { Container } from 'typedi'
+import { Logger } from 'winston'
 
 import AuthService from '../../services/auth'
 import UserService from '../../services/user'
 
 export default {
    createUser: async (req: Request, res: Response, next: NextFunction) => {
-      const logger: any = Container.get('logger')
+      const logger: Logger = Container.get('logger')
       logger.debug('calling create user endpoint with body: ', req.body)
 
       try {
@@ -23,7 +24,7 @@ export default {
       }
    },
    getUserById: async (req: Request, res: Response, next: NextFunction) => {
-      const logger: any = Container.get('logger')
+      const logger: Logger = Container.get('logger')
       logger.debug('calling get user  by id endpoint')
 
       try {
@@ -40,12 +41,11 @@ export default {
       }
    },
    getCurrentUser: async (req: Request, res: Response, next: NextFunction) => {
-      const logger: any = Container.get('logger')
+      const logger: Logger = Container.get('logger')
       logger.debug('calling get current user  endpoint')
 
       try {
          const id = req.session!.user_id
-         console.log('ID: ', id)
 
          const UserServiceInstance = Container.get(UserService)
 
@@ -59,7 +59,7 @@ export default {
       }
    },
    getUsers: async (req: Request, res: Response, next: NextFunction) => {
-      const logger: any = Container.get('logger')
+      const logger: Logger = Container.get('logger')
       logger.debug(`calling get users endpoint`)
       try {
          const UserServiceInstance = Container.get(UserService)
@@ -73,7 +73,7 @@ export default {
       }
    },
    updateUser: async (req: Request, res: Response, next: NextFunction) => {
-      const logger: any = Container.get('logger')
+      const logger: Logger = Container.get('logger')
       logger.debug(`calling update user endpoint`)
       try {
          const { id } = req.params
@@ -90,7 +90,7 @@ export default {
       }
    },
    deleteUser: async (req: Request, res: Response, next: NextFunction) => {
-      const logger: any = Container.get('logger')
+      const logger: Logger = Container.get('logger')
       logger.debug(`calling delete user endpoint`)
       try {
          const { id } = req.params

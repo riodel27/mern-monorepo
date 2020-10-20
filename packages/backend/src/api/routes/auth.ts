@@ -1,6 +1,7 @@
 import { celebrate as validate } from 'celebrate'
 import { NextFunction, Request, Response, Router } from 'express'
 import { Container } from 'typedi'
+import { Logger } from 'winston'
 
 import AuthService from '../../services/auth'
 import signUpValidator from '../../validators/signUpValidator'
@@ -14,7 +15,7 @@ export default (app: Router) => {
       '/signup',
       validate({ body: signUpValidator }),
       async (req: Request, res: Response, next: NextFunction) => {
-         const logger: any = Container.get('logger')
+         const logger: Logger = Container.get('logger')
          logger.debug('Calling Sign-Up endpoint with body: %o', req.body)
 
          try {
@@ -33,8 +34,9 @@ export default (app: Router) => {
    )
 
    route.post('/signin', async (req: Request, res: Response, next: NextFunction) => {
-      const logger: any = Container.get('logger')
+      const logger: Logger = Container.get('logger')
       logger.debug('Calling Sign-In endpoint with body: %o', req.body)
+
       try {
          const { email, password } = req.body
 
