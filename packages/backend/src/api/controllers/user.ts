@@ -66,8 +66,23 @@ export default {
 
          const { users, ...rest } = await UserServiceInstance.getAll(req.query)
 
-         logger.info(`${req.method} ${req.originalUrl} ${202}`)
-         return res.status(202).json({ users, ...rest })
+         logger.info(`${req.method} ${req.originalUrl} ${200}`)
+         return res.status(200).json({ users, ...rest })
+      } catch (error) {
+         return next(error)
+      }
+   },
+   getUsersV1: async (req: Request, res: Response, next: NextFunction) => {
+      const logger: Logger = Container.get('logger')
+      logger.debug(`calling get api v1 users endpoint`)
+      try {
+         const UserServiceInstance = Container.get(UserService)
+
+         const { users, ...rest } = await UserServiceInstance.getAllV1(req.query)
+
+         logger.info(`${req.method} ${req.originalUrl} ${200}`)
+
+         return res.status(200).json({ users, ...rest })
       } catch (error) {
          return next(error)
       }

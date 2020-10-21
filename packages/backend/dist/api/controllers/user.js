@@ -77,8 +77,21 @@ exports.default = {
         try {
             const UserServiceInstance = typedi_1.Container.get(user_1.default);
             const _a = yield UserServiceInstance.getAll(req.query), { users } = _a, rest = __rest(_a, ["users"]);
-            logger.info(`${req.method} ${req.originalUrl} ${202}`);
-            return res.status(202).json(Object.assign({ users }, rest));
+            logger.info(`${req.method} ${req.originalUrl} ${200}`);
+            return res.status(200).json(Object.assign({ users }, rest));
+        }
+        catch (error) {
+            return next(error);
+        }
+    }),
+    getUsersV1: (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+        const logger = typedi_1.Container.get('logger');
+        logger.debug(`calling get api v1 users endpoint`);
+        try {
+            const UserServiceInstance = typedi_1.Container.get(user_1.default);
+            const _b = yield UserServiceInstance.getAllV1(req.query), { users } = _b, rest = __rest(_b, ["users"]);
+            logger.info(`${req.method} ${req.originalUrl} ${200}`);
+            return res.status(200).json(Object.assign({ users }, rest));
         }
         catch (error) {
             return next(error);

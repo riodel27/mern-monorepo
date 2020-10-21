@@ -1,16 +1,39 @@
 /* eslint-disable react/display-name */
-import React, { useState } from 'react';
-import { Table, Space, Layout, Row, Col, Drawer, Card } from 'antd';
-import useGetUsers from 'hooks/user/useGetUsers';
+import React, { useCallback, useState } from 'react';
+import { Table, Space, Layout, Row, Col, Drawer, Card, Result, Button } from 'antd';
+import { usePaginatedQuery, useQueryCache } from 'react-query';
+
+import { axiosInstance } from 'util/base';
 
 const { Content } = Layout;
 
 export const User: React.FC = () => {
-   const [visible, setVisible] = useState(false);
-   const { data: users, isLoading } = useGetUsers();
+   const cache = useQueryCache();
 
-   const onClose = () => setVisible(false);
-   const handleShowDrawer = () => setVisible(true);
+   const [visible_drawer, setVisibleDrawer] = useState(false);
+   const [page, setPage] = useState(0);
+
+   const fetchUsers = useCallback(async (key, page = 0) => {
+      const { data } = await axiosInstance.get('/v1/users?page=' + page);
+      return data;
+   }, []);
+
+   const {
+      status,
+      resolvedData: resolved_data,
+      latestData: latest_data,
+      isFetching
+   } = usePaginatedQuery(['users', page], fetchUsers);
+
+   // Prefetch the next page!
+   React.useEffect(() => {
+      if (latest_data?.has_more) {
+         cache.prefetchQuery(['users', page + 1], fetchUsers);
+      }
+   }, [latest_data, fetchUsers, page]);
+
+   const onClose = () => setVisibleDrawer(false);
+   const handleShowDrawer = () => setVisibleDrawer(true);
 
    const columns = [
       {
@@ -99,18 +122,38 @@ export const User: React.FC = () => {
          <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
             <Col span={18}>
                <Card title="Users">
-                  <Table
-                     columns={columns}
-                     dataSource={users}
-                     scroll={{ x: 1500, y: 600 }}
-                     sticky
-                     loading={isLoading}
-                     pagination={{ total: 20 }}
-                  />
+                  {status === 'error' ? (
+                     <Result
+                        status="500"
+                        title="500"
+                        subTitle="Sorry, something went wrong."
+                        extra={
+                           <Button type="primary" href="/">
+                              Back Home
+                           </Button>
+                        }
+                     />
+                  ) : (
+                     <Table
+                        columns={columns}
+                        dataSource={resolved_data?.users}
+                        scroll={{ x: 1500, y: 600 }}
+                        sticky
+                        loading={isFetching}
+                        pagination={{ total: resolved_data?.meta?.count }}
+                        rowKey={(record) => record._id}
+                        onChange={(pagination: any) => setPage(pagination.current)}
+                     />
+                  )}
                </Card>
             </Col>
          </Row>
-         <Drawer width={640} placement="right" closable={false} onClose={onClose} visible={visible}>
+         <Drawer
+            width={640}
+            placement="right"
+            closable={false}
+            onClose={onClose}
+            visible={visible_drawer}>
             <p className="site-description-item-profile-p" style={{ marginBottom: 24 }}>
                Edit User
             </p>

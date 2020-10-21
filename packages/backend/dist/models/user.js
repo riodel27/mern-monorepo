@@ -17,7 +17,7 @@ const User = new mongoose_1.default.Schema({
         index: true,
     },
     password: { type: String, required: true },
-    age: Number,
+    age: { type: Number, required: false },
     city: String,
     country: String,
     birthday: Date,

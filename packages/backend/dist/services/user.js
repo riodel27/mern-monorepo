@@ -86,6 +86,28 @@ let UserService = class UserService {
             const offset = (query.offset && parseInt(query.offset)) || 0;
             const limit = (query.limit && parseInt(query.limit)) || 10;
             const total = yield this.user.countDocuments();
+            this.logger.debug('offset: %o', offset);
+            const users = yield this.user.find({}).sort({ _id: -1 }).skip(offset).limit(limit);
+            const next_offset = offset < total ? offset + limit : null;
+            return { users, next_offset, meta: { count: total, limit, offset } };
+        });
+    }
+    getAllV1(query) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const page = (query.page && parseInt(query.page)) || 1;
+            const offset = (query.offset && parseInt(query.offset)) || 0;
+            const limit = (query.limit && parseInt(query.limit)) || 10;
+            const total = yield this.user.countDocuments();
+            if (query.page) {
+                this.logger.debug('skip: %o', (page - 1) * limit);
+                const users = yield this.user
+                    .find({})
+                    .sort({ _id: -1 })
+                    .skip((page - 1) * limit)
+                    .limit(limit);
+                const has_more = page * limit < total;
+                return { users, has_more, meta: { count: total, limit, page } };
+            }
             const users = yield this.user.find({}).sort({ _id: -1 }).skip(offset).limit(limit);
             const next_offset = offset < total ? offset + limit : null;
             return { users, next_offset, meta: { count: total, limit, offset } };

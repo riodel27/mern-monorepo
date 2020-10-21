@@ -74,12 +74,39 @@ export default class UserService {
       return response
    }
 
-   // TODO: need to be dynamic to handle infinite scroll, pagination, filtering and sorting.
    public async getAll(query: IUserQuery) {
       const offset = (query.offset && parseInt(query.offset)) || 0
       const limit = (query.limit && parseInt(query.limit)) || 10
 
       const total = await this.user.countDocuments() // needed to compute for the next offset
+
+      this.logger.debug('offset: %o', offset)
+
+      const users = await this.user.find({}).sort({ _id: -1 }).skip(offset).limit(limit)
+
+      const next_offset = offset < total ? offset + limit : null
+
+      return { users, next_offset, meta: { count: total, limit, offset } }
+   }
+   public async getAllV1(query: IUserQuery) {
+      const page = (query.page && parseInt(query.page)) || 1
+      const offset = (query.offset && parseInt(query.offset)) || 0
+      const limit = (query.limit && parseInt(query.limit)) || 10
+
+      const total = await this.user.countDocuments()
+
+      if (query.page) {
+         this.logger.debug('skip: %o', (page - 1) * limit)
+         const users = await this.user
+            .find({})
+            .sort({ _id: -1 })
+            .skip((page - 1) * limit)
+            .limit(limit)
+
+         const has_more: boolean = page * limit < total
+
+         return { users, has_more, meta: { count: total, limit, page } }
+      }
 
       const users = await this.user.find({}).sort({ _id: -1 }).skip(offset).limit(limit)
 
