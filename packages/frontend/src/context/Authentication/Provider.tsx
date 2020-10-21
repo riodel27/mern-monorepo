@@ -7,12 +7,6 @@ import { AuthContext, DEFAULT_USER } from './Context';
 import { usePrevious } from 'hooks/usePrevious';
 import useGetCurrentCuser from 'hooks/user/useGetCurrentUser';
 
-/**
- *
- * ? react router navigation will call this auth provider
- * ? what happens if qid is expired
- */
-
 export const AuthProvider: React.FC<AuthProviderProps> = ({
    default_authenticated = false,
    default_user = DEFAULT_USER,
@@ -21,12 +15,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
    const [cookies] = useCookies();
 
    const is_authenticated = cookies['is_authenticated'];
-   const default_auth = is_authenticated && JSON.parse(is_authenticated);
 
-   const [authenticated, setAuthenticated] = React.useState(default_auth || default_authenticated);
-   const [user, setUser] = React.useState(default_user);
+   const [authenticated, setAuthenticated] = React.useState(
+      (is_authenticated && JSON.parse(is_authenticated)) || default_authenticated
+   );
 
    const previous_authenticated = usePrevious(authenticated);
+
+   const [user, setUser] = React.useState(default_user);
 
    const { data: current_user, refetch: refetchCurrentUser } = useGetCurrentCuser();
 
@@ -37,8 +33,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
    }, [current_user]);
 
    React.useEffect(() => {
-      // not authenticated previously && authenticated
-      // not false = true && authenticated => process logins
       if (not(previous_authenticated) && authenticated) {
          onLogin();
       }

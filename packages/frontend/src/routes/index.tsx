@@ -4,6 +4,8 @@ import { Switch } from 'react-router-dom';
 
 import { Login } from 'screens/Login';
 import { SignUp } from 'screens/SignUp';
+import { User } from 'screens/User';
+
 import Route from './Route';
 
 function Routes() {
@@ -13,7 +15,7 @@ function Routes() {
             <Route exact path="/" component={() => <div>Dashboard</div>} is_private />
             <Route exact path="/sign-in" component={Login} guest />
             <Route exact path="/sign-up" component={SignUp} guest />
-            <Route path="/users" component={() => <div>Users</div>} is_private />
+            <Route path="/users" component={User} is_private />
          </Switch>
       </Router>
    );

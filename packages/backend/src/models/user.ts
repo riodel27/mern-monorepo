@@ -9,18 +9,26 @@ const User = new mongoose.Schema(
          required: [true, 'Please enter a full name'],
          index: true,
       },
-
       email: {
          type: String,
          lowercase: true,
          unique: true,
          index: true,
       },
-
       password: { type: String, required: true },
-
+      age: Number,
+      city: String,
+      country: String,
+      birthday: Date,
+      message: String,
+      position: String,
+      responsibilities: Array,
+      department: String,
+      supervisor: String,
+      skills: Array,
+      phone_number: Number,
+      github: String,
       salt: String,
-
       role: {
          type: String,
          default: 'user',
