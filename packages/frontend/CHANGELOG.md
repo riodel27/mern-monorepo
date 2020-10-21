@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.10.0...v1.11.0) (2020-10-21)
+
+
+### Features
+
+* added users pagination ([c507926](https://github.com/riodel27/mern-starter-monorepo/commit/c507926a2f2e63cd08e0a4f8d1f12a7840895156))
+* initial user screen ([8429230](https://github.com/riodel27/mern-starter-monorepo/commit/842923017f4a8ae08fe78e00629dc6dc42663fe8))
+
+
+
+
+
 # [1.10.0](https://github.com/riodel27/mern-starter-monorepo/compare/v1.9.1...v1.10.0) (2020-10-20)
 
 
