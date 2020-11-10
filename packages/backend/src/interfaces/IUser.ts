@@ -3,7 +3,7 @@ export interface IUser {
    name: string
    email: string
    password: string
-   age: number
+   age?: number
    salt: string
    city?: string
    country?: string
@@ -22,7 +22,8 @@ export interface IUserInputDTO {
    name: string
    email: string
    password: string
-   age?: string
+   age?: number
+   salt?: string
    city?: string
    country?: string
    birthday?: string

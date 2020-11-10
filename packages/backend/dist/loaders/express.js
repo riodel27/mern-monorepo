@@ -11,6 +11,7 @@ const express_session_1 = __importDefault(require("express-session"));
 const api_1 = __importDefault(require("../api"));
 const config_1 = __importDefault(require("../config"));
 const constants_1 = require("../constants");
+const errors_1 = require("../utils/errors");
 exports.default = ({ app, redis_client }) => {
     const RedisStore = connect_redis_1.default(express_session_1.default);
     app.enable('trust proxy');
@@ -58,11 +59,15 @@ exports.default = ({ app, redis_client }) => {
         return next(err);
     });
     app.use((err, _, res, __) => {
-        res.status(err.status || 500);
-        res.json({
-            errors: {
+        if (err instanceof errors_1.GeneralError) {
+            return res.status(err.getCode()).json({
+                status: 'error',
                 message: err.message,
-            },
+            });
+        }
+        return res.status(500).json({
+            status: 'error',
+            message: err.message,
         });
     });
 };

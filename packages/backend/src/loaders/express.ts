@@ -4,11 +4,11 @@ import connectRedis from 'connect-redis'
 import cors from 'cors'
 import { Application, NextFunction, Request, Response } from 'express'
 import session from 'express-session'
-import { GeneralError } from 'utils/errors'
 
 import routes from '../api'
 import config from '../config'
 import { __prod__, COOKIE_NAME } from '../constants'
+import { GeneralError } from '../utils/errors'
 
 export default ({ app, redis_client }: { app: Application; redis_client: any }) => {
    const RedisStore = connectRedis(session)
