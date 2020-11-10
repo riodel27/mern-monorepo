@@ -4,6 +4,7 @@ import connectRedis from 'connect-redis'
 import cors from 'cors'
 import { Application, NextFunction, Request, Response } from 'express'
 import session from 'express-session'
+import { GeneralError } from 'utils/errors'
 
 import routes from '../api'
 import config from '../config'
@@ -61,7 +62,6 @@ export default ({ app, redis_client }: { app: Application; redis_client: any }) 
       next(err)
    })
 
-   ///TODO: proper error handlers
    app.use((err: any, _: Request, res: Response, next: NextFunction) => {
       /**
        * Handle 401 thrown by auth
@@ -73,11 +73,16 @@ export default ({ app, redis_client }: { app: Application; redis_client: any }) 
    })
 
    app.use((err: any, _: Request, res: Response, __: NextFunction) => {
-      res.status(err.status || 500)
-      res.json({
-         errors: {
+      if (err instanceof GeneralError) {
+         return res.status(err.getCode()).json({
+            status: 'error',
             message: err.message,
-         },
+         })
+      }
+
+      return res.status(500).json({
+         status: 'error',
+         message: err.message,
       })
    })
 }
